@@ -56,7 +56,7 @@ export default {
     async buscarPerfil() {
       this.loading = true;
 
-      const response = await fetch("http://localhost:3000/buscar-perfil", {
+      const response = await fetch(`${process.env.VUE_APP_API_URL}/buscar-perfil`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

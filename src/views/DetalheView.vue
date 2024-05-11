@@ -65,7 +65,8 @@ export default {
     },
     async obterImagemCapturada() {
       try {
-        const response = await fetch("http://localhost:3000/obter-imagem");
+        const apiUrl = `${process.env.VUE_APP_API_URL}/obter-imagem`;
+        const response = await fetch(apiUrl);
         if (response.ok) {
           const blob = await response.blob();
           this.screenshotData = URL.createObjectURL(blob);
