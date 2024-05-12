@@ -86,6 +86,7 @@ export default {
   display: flex;
   flex-direction: column;
   background-color: black;
+  min-height: 100vh;
 }
 
 .content {
