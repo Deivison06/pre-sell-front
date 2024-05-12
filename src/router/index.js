@@ -4,7 +4,7 @@ import DetalheView from "../views/DetalheView.vue";
 
 const routes = [
   {
-    path: "/instapower-formulario",
+    path: "/",
     name: "instapower-formulario",
     component: InstapowerFormulario,
   },

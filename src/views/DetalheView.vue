@@ -117,6 +117,12 @@ h2 {
   font-weight: 600;
   width: 300px;
   height: 50px;
+  transition: ease-in 0.5s;
+}
+.btn:hover {
+  background-image: linear-gradient(90deg, #ffffff 0%, #ffffff 100%);
+  background-color: #ffffff;
+  color: #ed2aff;
 }
 
 @media screen and (max-width: 1199px) {
