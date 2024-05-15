@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <!-- Use v-html para renderizar o HTML dentro da div -->
-    <p id="scarcity-message" class="marquee" v-html="scarcityMessage"></p>
+    <p id="scarcity-message" v-html="scarcityMessage"></p>
   </div>
 </template>
 
@@ -54,51 +54,16 @@ export default {
 <style>
 p {
   color: #ffffff;
-  font-size: 28px;
+  font-size: 18px;
 }
 .header {
-  height: 50px;
-  background-color: hsla(0, 0%, 100%, 0.308);
-  overflow: hidden;
-}
-
-.marquee {
-  animation: marqueeAnimation 10s linear infinite;
-  white-space: nowrap;
-  width: fit-content;
-  overflow: hidden;
-}
-
-@keyframes marqueeAnimation {
-  0% {
-    transform: translateX(80%);
-  }
-  100% {
-    transform: translateX(
-      -100%
-    );
-  }
+  padding: 10px;
+  background-color: #ffffff4f;
 }
 
 @media screen and (max-width: 768px) {
-  @keyframes marqueeAnimation {
-    0% {
-      transform: translateX(20%);
-    }
-    100% {
-      transform: translateX(
-        -100%
-      );
-    }
-  }
-  .marquee {
-    animation-duration: 10s;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .marquee {
-    animation-duration: 10s;
+  p {
+    font-size: 14px;
   }
 }
 </style>

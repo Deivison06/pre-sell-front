@@ -44,6 +44,7 @@
 import Card from "../components/Card.vue";
 import Header from "../components/Header.vue";
 import Footer from "../components/Footer.vue";
+import { useStore } from 'vuex';
 
 export default {
   components: {
@@ -57,15 +58,13 @@ export default {
     };
   },
   mounted() {
-    this.obterImagemCapturada();
+    const store = useStore(); // Importe e use a store do Vuex
+    this.obterImagemCapturada(store.getters.getUsername); // Obtenha o username da store
   },
   methods: {
-    redirectToPayment() {
-      window.location.href = "https://instapower.app.br/";
-    },
-    async obterImagemCapturada() {
+    async obterImagemCapturada(username) {
       try {
-        const apiUrl = `${process.env.VUE_APP_API_URL}/obter-imagem`;
+        const apiUrl = `https://presell-insta.onrender.com/obter-imagem?username=${username}`;
         const response = await fetch(apiUrl);
         if (response.ok) {
           const blob = await response.blob();
@@ -76,6 +75,9 @@ export default {
       } catch (error) {
         console.error("Erro ao obter a imagem:", error);
       }
+    },
+    redirectToPayment() {
+      // Implementar lógica de redirecionamento para a página de pagamento
     },
   },
 };

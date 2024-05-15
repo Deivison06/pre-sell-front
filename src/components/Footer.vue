@@ -51,7 +51,7 @@ export default {
     background-color: hsla(0, 0%, 100%, 0.082);
 }
 #counter {
-  
+  padding: 0 10px;
   color: #ed2aff;
   font-family: Montserrat, sans-serif;
   font-size: 21px;

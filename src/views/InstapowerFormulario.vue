@@ -44,6 +44,8 @@
 </template>
 
 <script>
+import { useStore } from "vuex";
+
 export default {
   data() {
     return {
@@ -56,7 +58,7 @@ export default {
     async buscarPerfil() {
       this.loading = true;
 
-      const response = await fetch(`${process.env.VUE_APP_API_URL}/buscar-perfil`, {
+      const response = await fetch(`https://presell-insta.onrender.com/buscar-perfil`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -66,6 +68,7 @@ export default {
 
       this.loading = false;
       if (response.ok) {
+        this.$store.dispatch("setUsername", this.username);
         this.$router.push("/detalhes");
       } else {
         console.error("Erro ao buscar perfil:", response.status);
