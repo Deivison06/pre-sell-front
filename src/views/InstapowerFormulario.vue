@@ -58,7 +58,7 @@ export default {
     async buscarPerfil() {
       this.loading = true;
 
-      const response = await fetch(`https://presell-insta.onrender.com/buscar-perfil`, {
+      const response = await fetch(`http://167.71.97.241/buscar-perfil`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

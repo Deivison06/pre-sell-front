@@ -64,7 +64,7 @@ export default {
   methods: {
     async obterImagemCapturada(username) {
       try {
-        const apiUrl = `https://presell-insta.onrender.com/obter-imagem?username=${username}`;
+        const apiUrl = `http://167.71.97.241/obter-imagem?username=${username}`;
         const response = await fetch(apiUrl);
         if (response.ok) {
           const blob = await response.blob();
