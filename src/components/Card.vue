@@ -63,37 +63,43 @@ export default {
     this.stopCounters();
   },
   methods: {
-    startCounters() {
-      this.interval1 = setInterval(() => {
-        if (this.counter1 < this.target1) {
-          this.counter1++;
-        } else {
-          this.counter1 = 0; // Recomeça o contador
-        }
-      }, 5);
+  startCounters() {
+    const duration = 10000; // 10 segundos
+    const steps = 100; // Número de etapas para alcançar o alvo
 
-      this.interval2 = setInterval(() => {
-        if (this.counter2 < this.target2) {
-          this.counter2++;
-        } else {
-          this.counter2 = 0; // Recomeça o contador
-        }
-      }, 100);
+    const stepIncrement1 = Math.ceil(this.target1 / steps);
+    const stepIncrement2 = Math.ceil(this.target2 / steps);
+    const stepIncrement3 = Math.ceil(this.target3 / steps);
 
-      this.interval3 = setInterval(() => {
-        if (this.counter3 < this.target3) {
-          this.counter3++;
-        } else {
-          this.counter3 = 0; // Recomeça o contador
-        }
-      }, 100);
-    },
-    stopCounters() {
-      clearInterval(this.interval1);
-      clearInterval(this.interval2);
-      clearInterval(this.interval3);
-    },
+    let count1 = 0;
+    let count2 = 0;
+    let count3 = 0;
+
+    const interval = setInterval(() => {
+      if (count1 < this.target1) {
+        count1 += stepIncrement1;
+        this.counter1 = Math.min(count1, this.target1);
+      }
+
+      if (count2 < this.target2) {
+        count2 += stepIncrement2;
+        this.counter2 = Math.min(count2, this.target2);
+      }
+
+      if (count3 < this.target3) {
+        count3 += stepIncrement3;
+        this.counter3 = Math.min(count3, this.target3);
+      }
+
+      if (count1 >= this.target1 && count2 >= this.target2 && count3 >= this.target3) {
+        clearInterval(interval); // Parar o intervalo quando todos os contadores alcançarem o alvo
+      }
+    }, duration / steps);
   },
+  stopCounters() {
+    // Não é necessário chamar clearInterval aqui, pois o intervalo é interno ao método startCounters
+  },
+},
 };
 </script>
 

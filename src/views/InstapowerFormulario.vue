@@ -28,16 +28,13 @@
           </div>
         </div>
       </div>
-      <div id="profileInfo">
-        <img
-          v-if="screenshotUrl"
-          :src="screenshotUrl"
-          alt="Screenshot do Instagram"
-          class="img-fluid"
-        />
-      </div>
       <div v-if="loading" id="loadingPopup" class="loading-overlay">
-        <div class="loader"></div>
+        <div class="loader">
+          <p>{{ loadingPercentage }}%</p>
+          <div class="progress-bar">
+            <div class="progress" :style="{ width: loadingPercentage + '%' }"></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -51,12 +48,19 @@ export default {
     return {
       username: "",
       loading: false,
+      loadingPercentage: 0,
       screenshotUrl: "",
     };
   },
   methods: {
     async buscarPerfil() {
       this.loading = true;
+      this.loadingPercentage = 0;
+      const interval = setInterval(() => {
+        if (this.loadingPercentage < 90) {
+          this.loadingPercentage += 10;
+        }
+      }, 500);
 
       const response = await fetch(`http://167.71.97.241/buscar-perfil`, {
         method: "POST",
@@ -66,13 +70,17 @@ export default {
         body: JSON.stringify({ username: this.username }),
       });
 
-      this.loading = false;
-      if (response.ok) {
-        this.$store.dispatch("setUsername", this.username);
-        this.$router.push("/detalhes");
-      } else {
-        console.error("Erro ao buscar perfil:", response.status);
-      }
+      clearInterval(interval);
+      this.loadingPercentage = 100;
+      setTimeout(() => {
+        this.loading = false;
+        if (response.ok) {
+          this.$store.dispatch("setUsername", this.username);
+          this.$router.push("/detalhes");
+        } else {
+          console.error("Erro ao buscar perfil:", response.status);
+        }
+      }, 500);
     },
   },
 };
@@ -96,7 +104,6 @@ h2 {
   font-weight: 600;
   line-height: 37px;
   letter-spacing: 0.2px;
-  /* Adicione a propriedade overflow-wrap */
   overflow-wrap: break-word;
 }
 .instapower {
@@ -138,21 +145,29 @@ button:hover {
 }
 
 .loader {
-  border: 4px solid #f3f3f3;
-  border-top: 4px solid #3498db;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  animation: spin 1s linear infinite;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: bold;
 }
 
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+.progress-bar {
+  width: 200px;
+  max-width: 500px;
+  height: 30px; /* Aumentar a altura da barra de progresso */
+  background-color: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 10px auto;
+}
+
+.progress {
+  height: 100%;
+  background-color: #1dc234;
+  transition: width 0.5s;
 }
 
 @media screen and (max-width: 992px) {

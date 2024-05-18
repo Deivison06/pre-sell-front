@@ -20,7 +20,7 @@
           </div>
           <div class="col-md-8">
             <div>
-              <h2>
+              <h2 class="before">
                 Seu perfil após <span style="color: #ed2aff">usar o InstaPower</span> pode
                 ganhar em até <span style="color: #ed2aff">15 dias</span>
               </h2>
@@ -44,7 +44,7 @@
 import Card from "../components/Card.vue";
 import Header from "../components/Header.vue";
 import Footer from "../components/Footer.vue";
-import { useStore } from 'vuex';
+import { useStore } from "vuex";
 
 export default {
   components: {
@@ -77,7 +77,7 @@ export default {
       }
     },
     redirectToPayment() {
-      // Implementar lógica de redirecionamento para a página de pagamento
+      window.location.href = "https://instapower.app.br/";
     },
   },
 };
@@ -108,6 +108,12 @@ h2 {
   line-height: 37px;
   letter-spacing: 0.2px;
   overflow-wrap: break-word;
+}
+
+@media screen and (max-width: 500px) {
+  .before {
+    margin-top: 2em;
+  }
 }
 .img-fluid {
   height: 470px;
