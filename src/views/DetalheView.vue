@@ -4,7 +4,7 @@
     <div class="content">
       <div class="container pt-5">
         <div class="insta pb-5">
-          <img src="../assets/insta.webp" alt="" />
+          <img src="../assets/insta.png" alt="" />
         </div>
         <div class="row mb-5">
           <div class="col-md-4">
@@ -90,7 +90,6 @@ export default {
   background-color: black;
   min-height: 100vh;
 }
-
 .content {
   flex: 1;
   background-image: url("../assets/headernovalais-1.png");
@@ -109,7 +108,9 @@ h2 {
   letter-spacing: 0.2px;
   overflow-wrap: break-word;
 }
-
+.insta img {
+  width: 250px;
+}
 @media screen and (max-width: 500px) {
   .before {
     margin-top: 2em;

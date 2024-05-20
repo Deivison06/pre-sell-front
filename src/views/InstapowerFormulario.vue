@@ -4,9 +4,9 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 text-logo">
           <img
-            src="../assets/insta.webp"
+            src="../assets/insta.png"
             alt="insta power"
             class="instapower img-fluid"
           />
@@ -16,12 +16,15 @@
             APÓS APLICAR O INSTAPOWER
           </h2>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 text-start">
+          <label for="instagram" style="color: #7a7a7a;" >Instagram<span class="required" style="color: #c60101;">*</span></label>
           <input
+            id="instagram"
             type="text"
             v-model="username"
             class="form-control mb-2"
             placeholder="Usuário do Instagram"
+            required
           />
           <div class="d-grid gap-2">
             <button class="btn" @click="buscarPerfil">QUERO FAZER A ANÁLISE</button>
@@ -107,6 +110,7 @@ h2 {
   overflow-wrap: break-word;
 }
 .instapower {
+  width: 230px;
   display: flex;
   align-items: flex-end;
   margin-bottom: 30px;
@@ -120,7 +124,6 @@ button:hover {
   background-color: #00ff22;
   color: #ffffff;
 }
-
 .container {
   padding: 0;
   position: absolute;
@@ -130,7 +133,6 @@ button:hover {
   bottom: 0;
   z-index: 1000;
 }
-
 .loading-overlay {
   position: fixed;
   top: 0;
@@ -143,7 +145,6 @@ button:hover {
   align-items: center;
   z-index: 999;
 }
-
 .loader {
   display: flex;
   flex-direction: column;
@@ -153,23 +154,20 @@ button:hover {
   font-size: 24px;
   font-weight: bold;
 }
-
 .progress-bar {
   width: 200px;
   max-width: 500px;
-  height: 30px; /* Aumentar a altura da barra de progresso */
+  height: 30px;
   background-color: #ffffff;
   border-radius: 10px;
   overflow: hidden;
   margin: 10px auto;
 }
-
 .progress {
   height: 100%;
   background-color: #1dc234;
   transition: width 0.5s;
 }
-
 @media screen and (max-width: 992px) {
   .container {
     max-width: 992px !important;
@@ -180,30 +178,42 @@ button:hover {
     background-position: center;
   }
 }
-
 @media screen and (max-width: 768px) {
   .container {
-    top: 5em;
+    top: 7em;
+    padding: 0 20px;
   }
   .banner {
     right: 100px;
   }
 }
-
 @media screen and (max-width: 576px) {
-  .container {
-    top: 2em;
-  }
   .banner {
     background-image: url("../assets/pgggs.png");
     background-blend-mode: multiply;
     background-color: rgba(0, 0, 0, 0.5);
     background-position: bottom;
-    height: 70vh;
+    height: 120vh;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 2em;
+  }
+  .text-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .instapower {
+    width: 150px;
   }
   h2 {
-    font-size: 25px;
+    font-size: 18px;
     line-height: 27px;
+    text-align: center !important;
+    margin-bottom: 2em;
   }
 }
 </style>
